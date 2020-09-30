@@ -21,4 +21,18 @@ public class UserRegistrationGradleTest {
 		Assert.assertFalse(result);
 	}
 
+	@Test
+	public void LastNameGood_ReturnTrue() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidateFirstName("Bhawsar");
+		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void LastNameGood_ReturnFalse() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidateFirstName("bhawsar");
+		Assert.assertFalse(result);
+	}
+
 }
