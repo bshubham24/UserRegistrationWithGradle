@@ -15,10 +15,10 @@ public class UserRegistrationGradleTest {
 	}
 
 	@Test
-	public void FirstNameGood_ReturnFalse() {
+	public void FirstNameBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		boolean result = obj.ValidateFirstName("shubham");
-		Assert.assertTrue(result);
+		Assert.assertFalse(result);
 	}
 
 	@Test
@@ -29,9 +29,24 @@ public class UserRegistrationGradleTest {
 	}
 
 	@Test
-	public void LastNameGood_ReturnFalse() {
+	public void LastNameBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		boolean result = obj.ValidateFirstName("bhawsar");
 		Assert.assertFalse(result);
+	}
+
+	@Test
+	public void EmailGood_ReturnTrue() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidateFirstName("Shubham007bhawsar@gmail.com");
+		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void EmailBad_ReturnFalse() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidateFirstName("sdfaddf..@@.com");
+		Assert.assertFalse(result);
+
 	}
 }
