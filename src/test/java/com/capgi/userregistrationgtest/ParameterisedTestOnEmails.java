@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import com.cagpi.userregistrationg.UserRegistrationCustomException;
 import com.cagpi.userregistrationg.UserRegistrationGradle;
 
 @RunWith(Parameterized.class)
@@ -37,7 +38,11 @@ public class ParameterisedTestOnEmails {
 	@Test
 	public void testEmail() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
-		boolean result = obj.ValidateEmail(this.emailTypes);
-		Assert.assertEquals(this.expectedResult, result);
+		try {
+			boolean result = obj.ValidateEmail(this.emailTypes);
+			Assert.assertEquals(this.expectedResult, result);
+		} catch (UserRegistrationCustomException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
