@@ -6,69 +6,75 @@ import java.util.regex.Pattern;
 
 public class UserRegistrationGradle {
 
-	public boolean ValidateFirstName(String fName) {
+	public boolean ValidateFirstName(String fName) throws UserRegistrationCustomException {
 		Pattern pattern = Pattern.compile("([A-Z]{1})([a-zA-Z]{2,})");
 		Matcher matcher = pattern.matcher(fName);
 		boolean isValid = matcher.find();
 		if (isValid) {
-			return true;
+			System.out.println("Name is valid");
 
 		} else {
-			return false;
+			throw new UserRegistrationCustomException("Name is invalid");
 
 		}
+		return (isValid);
 	}
 
-	public boolean ValidateLastName(String lName) {
+	public boolean ValidateLastName(String lName) throws UserRegistrationCustomException {
 		Pattern pattern = Pattern.compile("([A-Z]{1})([a-zA-Z]{2,})");
 		Matcher matcher = pattern.matcher(lName);
 		boolean isValid = matcher.find();
 		if (isValid) {
-			return true;
+			System.out.println(" Last Name is valid");
 
 		} else {
-			return false;
+			throw new UserRegistrationCustomException("Last Name is invalid");
 
 		}
+		return (isValid);
 	}
 
-	public boolean ValidateEmail(String email) {
+	public boolean ValidateEmail(String email) throws UserRegistrationCustomException {
 		Pattern pattern = Pattern
 				.compile("(^([a-z0-9+_-]+)([.][0-9a-z]+)*@([a-z0-9]+)([.]([a-z]{2,}))([.][a-z]{2})?$)");
 		Matcher matcher = pattern.matcher(email);
 		boolean isValid = matcher.find();
 		if (isValid) {
-			return true;
+			System.out.println("email is valid");
+
 		} else {
-			return false;
+			throw new UserRegistrationCustomException("email is invalid");
 
 		}
+		return (isValid);
 	}
 
-	public boolean ValidatePhoneNo(String phoneNo) {
+	public boolean ValidatePhoneNo(String phoneNo) throws UserRegistrationCustomException {
 		Pattern pattern = Pattern.compile("(^([0-9]+)( )([1-9]{1})([0-9]{9})$)");
 		Matcher matcher = pattern.matcher(phoneNo);
 		boolean isValid = matcher.find();
 		if (isValid) {
-			return true;
+			System.out.println("phoneNO is valid");
+
 		} else {
-			return false;
+			throw new UserRegistrationCustomException("phoneNo is invalid");
 
 		}
+		return (isValid);
 	}
 
-	public boolean ValidatePassword(String password) {
+	public boolean ValidatePassword(String password) throws UserRegistrationCustomException {
 		Pattern pattern = Pattern.compile("(?=.*[A-Z])(?=.*[0-9])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
 		Matcher matcher = pattern.matcher(password);
 		boolean isValid = matcher.find();
 		if (isValid) {
-			return true;
+			System.out.println("password is valid");
 
 		} else {
-			return false;
+			throw new UserRegistrationCustomException("password is invalid");
 
 		}
-
+		return (isValid);
 	}
 
 	public static void main(String[] args) {
@@ -91,6 +97,10 @@ public class UserRegistrationGradle {
 		 */
 		System.out.println("Enter Password");
 		String password = sc.nextLine();
-		userObj.ValidatePassword(password);
+		try {
+			userObj.ValidatePassword(password);
+		} catch (UserRegistrationCustomException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
