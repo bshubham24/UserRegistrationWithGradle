@@ -62,4 +62,18 @@ public class UserRegistrationGradleTest {
 		boolean result = obj.ValidatePhoneNo("84568522");
 		Assert.assertFalse(result);
 	}
+
+	@Test
+	public void PasswordGood_ReturnTrue() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidatePassword("Kb@3kdkkddddd");
+		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void PasswordNOBad_ReturnFalse() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidatePassword("84568522");
+		Assert.assertFalse(result);
+	}
 }
