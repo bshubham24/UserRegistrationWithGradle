@@ -34,8 +34,20 @@ public class UserRegistrationGradle {
 
 	public boolean ValidateEmail(String email) {
 		Pattern pattern = Pattern
-				.compile("(^([a-z]+)([+._-]{0,1})([0-9a-z]*)([@]{1})([a-z0-9]+)(.([a-z]{2,})){1}(.[a-z][a-z])?$)");
+				.compile("(^([a-z0-9+_-]+)([.][0-9a-z]+)*@([a-z0-9]+)([.]([a-z]{2,}))([.][a-z]{2})?$)");
 		Matcher matcher = pattern.matcher(email);
+		boolean isValid = matcher.find();
+		if (isValid) {
+			return true;
+		} else {
+			return false;
+
+		}
+	}
+
+	public boolean ValidatePhoneNo(String phoneNo) {
+		Pattern pattern = Pattern.compile("(^([0-9]+)( )([1-9]{1})([0-9]{9})$)");
+		Matcher matcher = pattern.matcher(phoneNo);
 		boolean isValid = matcher.find();
 		if (isValid) {
 			return true;
@@ -57,9 +69,12 @@ public class UserRegistrationGradle {
 		 * 
 		 * System.out.println("Enter the last name"); String lName = sc.nextLine();
 		 * userObj.ValidateLastName(lName);
+		 * 
+		 * System.out.println("Enter Email"); String email = sc.nextLine();
+		 * userObj.ValidateEmail(email);
 		 */
-		System.out.println("Enter Email");
-		String email = sc.nextLine();
-		userObj.ValidateEmail(email);
+		System.out.println("Enter Phone number");
+		String phoneNo = sc.nextLine();
+		userObj.ValidatePhoneNo(phoneNo);
 	}
 }

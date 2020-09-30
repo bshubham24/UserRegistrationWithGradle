@@ -24,29 +24,42 @@ public class UserRegistrationGradleTest {
 	@Test
 	public void LastNameGood_ReturnTrue() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
-		boolean result = obj.ValidateFirstName("Bhawsar");
+		boolean result = obj.ValidateLastName("Bhawsar");
 		Assert.assertTrue(result);
 	}
 
 	@Test
 	public void LastNameBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
-		boolean result = obj.ValidateFirstName("bhawsar");
+		boolean result = obj.ValidateLastName("bhawsar");
 		Assert.assertFalse(result);
 	}
 
 	@Test
 	public void EmailGood_ReturnTrue() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
-		boolean result = obj.ValidateFirstName("Shubham007bhawsar@gmail.com");
+		boolean result = obj.ValidateEmail("Shubhambhawsar@gmail.com");
 		Assert.assertTrue(result);
 	}
 
 	@Test
 	public void EmailBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
-		boolean result = obj.ValidateFirstName("sdfaddf..@@.com");
+		boolean result = obj.ValidateEmail("sdfaddf..@@.com");
 		Assert.assertFalse(result);
+	}
 
+	@Test
+	public void PhoneNoGood_ReturnTrue() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidatePhoneNo("91 9874563210");
+		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void PhoneNOBad_ReturnFalse() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidatePhoneNo("84568522");
+		Assert.assertFalse(result);
 	}
 }
