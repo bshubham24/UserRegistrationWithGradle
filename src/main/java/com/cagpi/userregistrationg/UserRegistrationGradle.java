@@ -55,6 +55,19 @@ public class UserRegistrationGradle {
 			return false;
 
 		}
+	}
+
+	public boolean ValidatePassword(String password) {
+		Pattern pattern = Pattern.compile("(?=.*[A-Z])(?=.*[0-9])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
+		Matcher matcher = pattern.matcher(password);
+		boolean isValid = matcher.find();
+		if (isValid) {
+			return true;
+
+		} else {
+			return false;
+
+		}
 
 	}
 
@@ -72,9 +85,12 @@ public class UserRegistrationGradle {
 		 * 
 		 * System.out.println("Enter Email"); String email = sc.nextLine();
 		 * userObj.ValidateEmail(email);
+		 * 
+		 * System.out.println("Enter Phone number"); String phoneNo = sc.nextLine();
+		 * userObj.ValidatePhoneNo(phoneNo);
 		 */
-		System.out.println("Enter Phone number");
-		String phoneNo = sc.nextLine();
-		userObj.ValidatePhoneNo(phoneNo);
+		System.out.println("Enter Password");
+		String password = sc.nextLine();
+		userObj.ValidatePassword(password);
 	}
 }
