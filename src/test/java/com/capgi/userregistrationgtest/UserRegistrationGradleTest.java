@@ -13,4 +13,12 @@ public class UserRegistrationGradleTest {
 		boolean result = obj.ValidateFirstName("Shubham");
 		Assert.assertTrue(result);
 	}
+
+	@Test
+	public void FirstNameGood_ReturnFalse() {
+		UserRegistrationGradle obj = new UserRegistrationGradle();
+		boolean result = obj.ValidateFirstName("shubham");
+		Assert.assertFalse(result);
+	}
+
 }
