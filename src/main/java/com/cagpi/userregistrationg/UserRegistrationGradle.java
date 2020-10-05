@@ -4,103 +4,122 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+interface iValidation {
+	public boolean validation(String s);
+}
+
 public class UserRegistrationGradle {
-
-	public boolean ValidateFirstName(String fName) throws UserRegistrationCustomException {
-		Pattern pattern = Pattern.compile("([A-Z]{1})([a-zA-Z]{2,})");
-		Matcher matcher = pattern.matcher(fName);
-		boolean isValid = matcher.find();
-		if (isValid) {
-			System.out.println("Name is valid");
-
-		} else {
-			throw new UserRegistrationCustomException("Name is invalid");
-
-		}
-		return (isValid);
-	}
-
-	public boolean ValidateLastName(String lName) throws UserRegistrationCustomException {
-		Pattern pattern = Pattern.compile("([A-Z]{1})([a-zA-Z]{2,})");
-		Matcher matcher = pattern.matcher(lName);
-		boolean isValid = matcher.find();
-		if (isValid) {
-			System.out.println(" Last Name is valid");
-
-		} else {
-			throw new UserRegistrationCustomException("Last Name is invalid");
-
-		}
-		return (isValid);
-	}
-
-	public boolean ValidateEmail(String email) throws UserRegistrationCustomException {
-		Pattern pattern = Pattern
+	public static boolean Validation(String fName, String lName, String mail, String phone, String passWord)
+			throws UserRegistrationCustomException {
+		Pattern patternFirstName = Pattern.compile("([A-Z]{1})([a-zA-Z]{2,})");
+		Pattern patternLastName = Pattern.compile("([A-Z]{1})([a-zA-Z]{2,})");
+		Pattern patternEmail = Pattern
 				.compile("(^([a-z0-9+_-]+)([.][0-9a-z]+)*@([a-z0-9]+)([.]([a-z]{2,}))([.][a-z]{2})?$)");
-		Matcher matcher = pattern.matcher(email);
-		boolean isValid = matcher.find();
-		if (isValid) {
-			System.out.println("email is valid");
+		Pattern patternPhoneNo = Pattern.compile("(^([0-9]+)( )([1-9]{1})([0-9]{9})$)");
+		Pattern patternPassword = Pattern.compile("(?=.*[A-Z])(?=.*[0-9])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
 
-		} else {
-			throw new UserRegistrationCustomException("email is invalid");
+		iValidation firstName = (name) -> {
+			Matcher matcher = patternFirstName.matcher(fName);
+			boolean isValid = matcher.find();
+			if (isValid)
+				return true;
 
-		}
-		return (isValid);
-	}
+			else
+				return false;
+		};
 
-	public boolean ValidatePhoneNo(String phoneNo) throws UserRegistrationCustomException {
-		Pattern pattern = Pattern.compile("(^([0-9]+)( )([1-9]{1})([0-9]{9})$)");
-		Matcher matcher = pattern.matcher(phoneNo);
-		boolean isValid = matcher.find();
-		if (isValid) {
-			System.out.println("phoneNO is valid");
+		iValidation lastName = (name) -> {
+			Matcher matcher = patternLastName.matcher(lName);
+			boolean isValid = matcher.find();
+			if (isValid)
+				return true;
+			else
+				return false;
+		};
 
-		} else {
-			throw new UserRegistrationCustomException("phoneNo is invalid");
+		iValidation email = (name) -> {
+			Matcher matcher = patternEmail.matcher(mail);
+			boolean isValid = matcher.find();
+			if (isValid)
+				return true;
+			else
+				return false;
 
-		}
-		return (isValid);
-	}
+		};
+		iValidation phoneNo = (name) -> {
+			Matcher matcher = patternPhoneNo.matcher(phone);
+			boolean isValid = matcher.find();
+			if (isValid)
+				return true;
+			else
+				return false;
 
-	public boolean ValidatePassword(String password) throws UserRegistrationCustomException {
-		Pattern pattern = Pattern.compile("(?=.*[A-Z])(?=.*[0-9])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
-		Matcher matcher = pattern.matcher(password);
-		boolean isValid = matcher.find();
-		if (isValid) {
-			System.out.println("password is valid");
-
-		} else {
-			throw new UserRegistrationCustomException("password is invalid");
-
-		}
-		return (isValid);
+		};
+		iValidation password = (name) -> {
+			Matcher matcher = patternPassword.matcher(passWord);
+			boolean isValid = matcher.find();
+			if (isValid)
+				return true;
+			else
+				return false;
+		};
+		boolean isValid = firstName.validation(fName);
+		if (isValid)
+			System.out.println("Valid first name");
+		else
+			throw new UserRegistrationCustomException("Enter Valid first name");
+		isValid = lastName.validation(lName);
+		if (isValid)
+			System.out.println("valid last name");
+		else
+			throw new UserRegistrationCustomException("Enter Valid last name");
+		isValid = email.validation(mail);
+		if (isValid)
+			System.out.println("Valid email");
+		else
+			throw new UserRegistrationCustomException("Enter Valid email");
+		isValid = phoneNo.validation(phone);
+		if (isValid)
+			System.out.println("Valid phone number");
+		else
+			throw new UserRegistrationCustomException("Enter Valid phone number");
+		isValid = password.validation(passWord);
+		if (isValid)
+			System.out.println("Valid password");
+		else
+			throw new UserRegistrationCustomException("Enter Valid password");
+		return true;
 	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		UserRegistrationGradle userObj = new UserRegistrationGradle();
+		boolean check = false;
+		while (!check) {
+			System.out.println("Enter First Name");
+			String fName = sc.nextLine();
 
-		/*
-		 * System.out.println("Enter the First name"); String fName = sc.nextLine();
-		 * userObj.ValidateFirstName(fName);
-		 * 
-		 * System.out.println("Enter the last name"); String lName = sc.nextLine();
-		 * userObj.ValidateLastName(lName);
-		 * 
-		 * System.out.println("Enter Email"); String email = sc.nextLine();
-		 * userObj.ValidateEmail(email);
-		 * 
-		 * System.out.println("Enter Phone number"); String phoneNo = sc.nextLine();
-		 * userObj.ValidatePhoneNo(phoneNo);
-		 */
-		System.out.println("Enter Password");
-		String password = sc.nextLine();
-		try {
-			userObj.ValidatePassword(password);
-		} catch (UserRegistrationCustomException e) {
-			System.out.println(e.getMessage());
+			System.out.println("Enter Last Name");
+			String lName = sc.nextLine();
+
+			System.out.println("Enter Email");
+			String mail = sc.nextLine();
+
+			System.out.println("Enter Phone number");
+			String phone = sc.nextLine();
+
+			System.out.println("Enter Password");
+			String passWord = sc.nextLine();
+
+			try {
+				check = Validation(fName, lName, mail, phone, passWord);
+
+				System.out.println("Validation Successful");
+
+			} catch (UserRegistrationCustomException e) {
+				System.out.println(e.getMessage());
+				System.out.println("Enter details again");
+			}
 		}
 	}
 }

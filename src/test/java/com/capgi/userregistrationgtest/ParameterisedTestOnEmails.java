@@ -39,7 +39,7 @@ public class ParameterisedTestOnEmails {
 	public void testEmail() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		try {
-			boolean result = obj.ValidateEmail(this.emailTypes);
+			boolean result = obj.Validation("Shubham", "Bhawsar", this.emailTypes, "91 7412589633", "Akk@122kkkd");
 			Assert.assertEquals(this.expectedResult, result);
 		} catch (UserRegistrationCustomException e) {
 			System.out.println(e.getMessage());

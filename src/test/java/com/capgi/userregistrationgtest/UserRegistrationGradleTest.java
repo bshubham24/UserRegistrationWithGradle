@@ -9,10 +9,11 @@ import com.cagpi.userregistrationg.UserRegistrationGradle;
 public class UserRegistrationGradleTest {
 
 	@Test
-	public void FirstNameGood_ReturnTrue() {
+	public void WhenEverthingIsGood_ReturnTrue() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		try {
-			boolean result = obj.ValidateFirstName("Shubham");
+			boolean result = obj.Validation("Shubham", "Bhawsar", "shubham007@gamil.com", "91 7412589633",
+					"Akk@122kkkd");
 			Assert.assertTrue(result);
 		} catch (UserRegistrationCustomException e) {
 			System.out.println(e.getMessage());
@@ -23,19 +24,9 @@ public class UserRegistrationGradleTest {
 	public void FirstNameBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		try {
-			boolean result = obj.ValidateFirstName("shubham");
+			boolean result = obj.Validation("shubham", "Bhawsar", "shubham007@gamil.com", "91 7412589633",
+					"Akk@122kkkd");
 			Assert.assertFalse(result);
-		} catch (UserRegistrationCustomException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	@Test
-	public void LastNameGood_ReturnTrue() {
-		UserRegistrationGradle obj = new UserRegistrationGradle();
-		try {
-			boolean result = obj.ValidateLastName("Bhawsar");
-			Assert.assertTrue(result);
 		} catch (UserRegistrationCustomException e) {
 			System.out.println(e.getMessage());
 		}
@@ -45,19 +36,9 @@ public class UserRegistrationGradleTest {
 	public void LastNameBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		try {
-			boolean result = obj.ValidateLastName("bhawsar");
+			boolean result = obj.Validation("Shubham", " bhawsar", "shubham007@gamil.com", "91 7412589633",
+					"Akk@122kkkd");
 			Assert.assertFalse(result);
-		} catch (UserRegistrationCustomException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	@Test
-	public void EmailGood_ReturnTrue() {
-		UserRegistrationGradle obj = new UserRegistrationGradle();
-		try {
-			boolean result = obj.ValidateEmail("Shubhambhawsar@gmail.com");
-			Assert.assertTrue(result);
 		} catch (UserRegistrationCustomException e) {
 			System.out.println(e.getMessage());
 		}
@@ -67,19 +48,8 @@ public class UserRegistrationGradleTest {
 	public void EmailBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		try {
-			boolean result = obj.ValidateEmail("sdfaddf..@@.com");
+			boolean result = obj.Validation("Shubham", "Bhawsar", "sdfaddf..@@.com", "91 7412589633", "Akk@122kkkd");
 			Assert.assertFalse(result);
-		} catch (UserRegistrationCustomException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	@Test
-	public void PhoneNoGood_ReturnTrue() {
-		UserRegistrationGradle obj = new UserRegistrationGradle();
-		try {
-			boolean result = obj.ValidatePhoneNo("91 9874563210");
-			Assert.assertTrue(result);
 		} catch (UserRegistrationCustomException e) {
 			System.out.println(e.getMessage());
 		}
@@ -89,19 +59,8 @@ public class UserRegistrationGradleTest {
 	public void PhoneNOBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		try {
-			boolean result = obj.ValidatePhoneNo("84568522");
+			boolean result = obj.Validation("Shubham", "Bhawsar", "shubham007@gamil.com", "84568522", "Akk@122kkkd");
 			Assert.assertFalse(result);
-		} catch (UserRegistrationCustomException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	@Test
-	public void PasswordGood_ReturnTrue() {
-		UserRegistrationGradle obj = new UserRegistrationGradle();
-		try {
-			boolean result = obj.ValidatePassword("Kb@3kdkkddddd");
-			Assert.assertTrue(result);
 		} catch (UserRegistrationCustomException e) {
 			System.out.println(e.getMessage());
 		}
@@ -111,7 +70,7 @@ public class UserRegistrationGradleTest {
 	public void PasswordNOBad_ReturnFalse() {
 		UserRegistrationGradle obj = new UserRegistrationGradle();
 		try {
-			boolean result = obj.ValidatePassword("84568522");
+			boolean result = obj.Validation("Shubham", "Bhawsar", "shubham007@gamil.com", "91 7412589633", "84568522");
 			Assert.assertFalse(result);
 		} catch (UserRegistrationCustomException e) {
 			System.out.println(e.getMessage());
